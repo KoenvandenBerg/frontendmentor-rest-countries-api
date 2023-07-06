@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --transition-duration: 0.5s;
+  }
+
+  * {
+    transition: background-color var(--transition-duration) ease-in-out;
+  }
+
+  .text-transition {
+    transition: color var(--transition-duration) ease-in-out;
+  }
+}
