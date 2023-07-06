@@ -15,9 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <main className="">{children}</main>
+      <body className={`${inter.className}`}>
+        <div className="h-screen flex flex-col text-light-text dark:text-dark-text text-transition">
+          <Navbar />
+          <main className="h-full bg-light-bg dark:bg-dark-bg">{children}</main>
+        </div>
       </body>
     </html>
   );

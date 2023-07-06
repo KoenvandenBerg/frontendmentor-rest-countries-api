@@ -38,5 +38,7 @@ export default function useThemePreference() {
     }
   }, [theme]);
 
-  return changeTheme;
+  return [theme, changeTheme];
 }
+
+export { possibleThemes };
