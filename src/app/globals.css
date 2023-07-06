@@ -7,12 +7,12 @@
     --transition-duration: 0.5s;
     box-sizing: border-box;
   }
+}
 
-  * {
-    transition: background-color var(--transition-duration) ease-in-out;
-  }
+* {
+  transition: background-color var(--transition-duration) ease-in-out;
+}
 
-  .text-transition {
-    transition: color var(--transition-duration) ease-in-out;
-  }
+.text-transition {
+  transition: color var(--transition-duration) ease-in-out;
 }
