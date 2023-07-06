@@ -15,8 +15,8 @@ export default function Navbar() {
         <Link href="/"><h1 className="text-sm sm:text-2xl font-extrabold">Where in the world?</h1></Link>
         <button onClick={changeTheme as () => void} className="flex text-xs sm:text-base" >
           {theme === possibleThemes.light ?
-            <MdOutlineDarkMode className="h-4 sm:h-5 w-5 sm:w-5 mr-1 sm:mr-2 sm:mt-[0.05rem]" /> :
-            <MdDarkMode className="h-4 sm:h-5 w-5 sm:w-5 mr-1 sm:mr-2 sm:mt-[0.05rem]"/>}
+            <MdOutlineDarkMode className="h-4 sm:h-5 w-5 sm:w-5 mr-1 sm:mr-2 sm:mt-[0.125rem]" /> :
+            <MdDarkMode className="h-4 sm:h-5 w-5 sm:w-5 mr-1 sm:mr-2 sm:mt-[0.125rem]"/>}
             Dark Mode
         </button>
       </nav>
