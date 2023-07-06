@@ -21,6 +21,9 @@ module.exports = {
 
         "box-shadow": "rgba(0, 0, 0, 0.06)",
       },
+      screens: {
+        'xsm': '450px'
+      }
     },
   },
   plugins: [],

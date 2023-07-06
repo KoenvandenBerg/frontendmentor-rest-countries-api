@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Frontend Mentor | REST Countries API",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={`${nunito.className}`}>
         <div className="h-screen flex flex-col text-light-text dark:text-dark-text text-transition">
           <Navbar />
           <main className="h-full bg-light-bg dark:bg-dark-bg">{children}</main>

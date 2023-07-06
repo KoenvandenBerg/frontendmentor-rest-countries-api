@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --transition-duration: 0.5s;
+    box-sizing: border-box;
   }
 
   * {
