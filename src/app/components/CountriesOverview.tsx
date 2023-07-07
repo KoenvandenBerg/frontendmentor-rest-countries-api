@@ -21,7 +21,15 @@ export default function CountriesOverview({ data }: countriesOverviewProps) {
       country.name.common.toLowerCase().includes(searchFilter.toLowerCase())
   );
 
-  const countriesToRender = countriesFilteredByRegionAndSearch;
+  const countriesToRender = countriesFilteredByRegionAndSearch.sort((a, b) => {
+    if (a.name.common < b.name.common) {
+      return -1;
+    }
+    if (a.name.common > b.name.common) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <div>
