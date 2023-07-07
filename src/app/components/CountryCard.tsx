@@ -17,7 +17,7 @@ export default function CountryCard(props: countryCardProps) {
         <img
           src={props.flag}
           alt={`The flag of ${props.name}.`}
-          className="h-1/2 w-full rounded-t-[0.3125rem]"
+          className="h-1/2 w-full rounded-t-[0.3125rem] shadow-md shadow-box-shadow"
         />
         <div className="flex flex-col gap-1 m-6">
           <h2 className="text-lg font-extrabold pb-2 truncate">{props.name}</h2>

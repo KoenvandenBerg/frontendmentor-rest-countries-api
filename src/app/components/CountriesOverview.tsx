@@ -29,18 +29,26 @@ export default function CountriesOverview({ data }: countriesOverviewProps) {
         setSearchFilter={setSearchFilter}
         setRegionFilter={setRegionFilter}
       />
-      <div className="my-6 sm:my-9 lg:my-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {countriesToRender.map((country) => (
-          <CountryCard
-            key={country.name.official}
-            name={country.name.common}
-            flag={country.flags.png}
-            population={country.population.toLocaleString("en-US")}
-            region={country.region}
-            capital={country?.capital === undefined ? "-" : country.capital[0]}
-          />
-        ))}
-      </div>
+      {countriesToRender?.length ? (
+        <div className="my-6 sm:my-9 lg:my-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          {countriesToRender.map((country) => (
+            <CountryCard
+              key={country.name.official}
+              name={country.name.common}
+              flag={country.flags.png}
+              population={country.population.toLocaleString("en-US")}
+              region={country.region}
+              capital={
+                country?.capital === undefined ? "-" : country.capital[0]
+              }
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="w-full my-6 sm:my-9 lg:my-12 text-center text-lg">
+          {`No country with a name containing '${searchFilter}' was found.`}
+        </p>
+      )}
     </div>
   );
 }
