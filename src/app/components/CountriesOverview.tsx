@@ -46,7 +46,13 @@ export default function CountriesOverview({ data }: countriesOverviewProps) {
         </div>
       ) : (
         <p className="w-full my-6 sm:my-9 lg:my-12 text-center text-lg">
-          {`No country with a name containing '${searchFilter}' was found.`}
+          {`No country with a name containing '${searchFilter}' was found${
+            regionFilter === ""
+              ? "."
+              : regionFilter === "Americas" || regionFilter === "Antarctic"
+              ? ` in the ${regionFilter}.`
+              : ` in ${regionFilter}.`
+          }`}
         </p>
       )}
     </div>
