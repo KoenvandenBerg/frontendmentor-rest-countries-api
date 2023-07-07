@@ -19,8 +19,8 @@ export default function CountryCard(props: countryCardProps) {
           alt={`The flag of ${props.name}.`}
           className="h-1/2 w-full rounded-t-[0.3125rem]"
         />
-        <div className="flex flex-col gap-1 pt-6 pl-6">
-          <h2 className="text-lg font-extrabold pb-2">{props.name}</h2>
+        <div className="flex flex-col gap-1 m-6">
+          <h2 className="text-lg font-extrabold pb-2 truncate">{props.name}</h2>
           <p className="text-sm">
             <span className="font-bold">Population:</span> {props.population}
           </p>
