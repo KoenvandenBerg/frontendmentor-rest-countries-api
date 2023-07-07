@@ -1,5 +1,17 @@
+import CountriesOverview from "./components/CountriesOverview";
 import Filters from "./components/Filters";
+import getData from "./libs/getData";
+import * as apiResponseTypes from "./libs/types/apiResponseTypes";
 
-export default function Home() {
-  return <Filters />;
+export default async function Home() {
+  const data: apiResponseTypes.Country[] = await getData(
+    "https://restcountries.com/v3.1/all"
+  );
+
+  return (
+    <>
+      <Filters />
+      <CountriesOverview data={data} />
+    </>
+  );
 }
