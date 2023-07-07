@@ -1,9 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MdClose, MdArrowDropDown } from "react-icons/md";
+import * as apiResponseTypes from "../libs/types/apiResponseTypes";
 
-export default function RegionFilter() {
+const allRegions = Object.keys(apiResponseTypes.Region);
+
+type regionFilterProps = {
+  setRegionFilter: Dispatch<SetStateAction<string>>;
+};
+
+export default function RegionFilter(props: regionFilterProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,6 +23,8 @@ export default function RegionFilter() {
     setSelectedRegion(region);
     setMenuOpen(false);
   };
+
+  useEffect(() => props.setRegionFilter(selectedRegion), [selectedRegion]);
 
   return (
     <div className="relative">
@@ -37,11 +46,19 @@ export default function RegionFilter() {
         )}
       </div>
       {menuOpen && (
-        <div className="absolute top-[3.3rem] sm:top-[3.8rem] w-full sm:w-[12.5rem] py-4 bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input">
+        <div className="absolute top-[3.3rem] sm:top-[3.8rem] w-full sm:w-[12.5rem] py-4 bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input z-10">
           <ul className="flex flex-col gap-2">
-            <li onClick={() => selectRegion("Test 1")}>Menu Item 1</li>
-            <li>Menu Item 2</li>
-            <li>Menu Item 3</li>
+            {allRegions.map((region) => {
+              return (
+                <li
+                  className="cursor-pointer hover:underline underline-offset-4"
+                  key={region}
+                  onClick={() => selectRegion(region)}
+                >
+                  {region}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

@@ -1,5 +1,4 @@
 import CountriesOverview from "./components/CountriesOverview";
-import Filters from "./components/Filters";
 import getData from "./libs/getData";
 import * as apiResponseTypes from "./libs/types/apiResponseTypes";
 
@@ -10,7 +9,6 @@ export default async function Home() {
 
   return (
     <>
-      <Filters />
       <CountriesOverview data={data} />
     </>
   );

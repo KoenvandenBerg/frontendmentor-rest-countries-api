@@ -1,14 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MdClose, MdSearch } from "react-icons/md";
 
-export default function SearchFilter() {
+type searchFilterProps = {
+  setSearchFilter: Dispatch<SetStateAction<string>>;
+};
+
+export default function SearchFilter(props: searchFilterProps) {
   const [filterText, setFilterText] = useState("");
 
   const handleChange = (text: string) => {
     setFilterText(text);
   };
+
+  useEffect(() => props.setSearchFilter(filterText), [filterText]);
 
   return (
     <div className="relative">

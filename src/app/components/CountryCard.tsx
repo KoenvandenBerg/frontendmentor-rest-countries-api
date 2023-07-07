@@ -10,31 +10,25 @@ type countryCardProps = PropsWithChildren<{
   capital: string;
 }>;
 
-export default function CountryCard({
-  name,
-  flag,
-  population,
-  region,
-  capital,
-}: countryCardProps) {
+export default function CountryCard(props: countryCardProps) {
   return (
-    <Link href={`/${name}`}>
+    <Link href={`/${props.name}`}>
       <div className="w-[16.5rem] h-[21rem] bg-light-elements dark:bg-dark-elements rounded-[0.3125rem]  shadow-md shadow-box-shadow hover:scale-105 transition-transform">
         <img
-          src={flag}
-          alt={`The flag of ${name}.`}
+          src={props.flag}
+          alt={`The flag of ${props.name}.`}
           className="h-1/2 w-full rounded-t-[0.3125rem]"
         />
         <div className="flex flex-col gap-1 pt-6 pl-6">
-          <h2 className="text-lg font-extrabold pb-2">{name}</h2>
+          <h2 className="text-lg font-extrabold pb-2">{props.name}</h2>
           <p className="text-sm">
-            <span className="font-bold">Population:</span> {population}
+            <span className="font-bold">Population:</span> {props.population}
           </p>
           <p className="text-sm">
-            <span className="font-bold">Region:</span> {region}
+            <span className="font-bold">Region:</span> {props.region}
           </p>
           <p className="text-sm">
-            <span className="font-bold">Capital:</span> {capital}
+            <span className="font-bold">Capital:</span> {props.capital}
           </p>
         </div>
       </div>
