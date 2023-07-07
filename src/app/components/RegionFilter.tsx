@@ -18,7 +18,7 @@ export default function RegionFilter() {
   };
 
   return (
-    <div>
+    <div className="relative">
       <div className="relative h-12 sm:h-[3.5rem] w-full sm:w-[12.5rem] flex justify-between items-center bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input">
         <p>{selectedRegion !== "" ? selectedRegion : "Filter by Region"}</p>
         {selectedRegion !== "" ? (
@@ -37,7 +37,7 @@ export default function RegionFilter() {
         )}
       </div>
       {menuOpen && (
-        <div className="relative top-1 w-full sm:w-[12.5rem] py-4 bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input">
+        <div className="absolute top-[3.3rem] sm:top-[3.8rem] w-full sm:w-[12.5rem] py-4 bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input">
           <ul className="flex flex-col gap-2">
             <li onClick={() => selectRegion("Test 1")}>Menu Item 1</li>
             <li>Menu Item 2</li>
