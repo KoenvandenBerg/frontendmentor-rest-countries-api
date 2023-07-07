@@ -12,7 +12,7 @@ export default function SearchFilter() {
 
   return (
     <div className="relative">
-      <MdSearch className="absolute h-4 sm:h-5 w-4 sm:w-5 text-light-input dark:text-dark-input top-4 sm:top-[1.15rem] left-4" />
+      <MdSearch className="absolute h-4 sm:h-5 w-4 sm:w-5 text-light-text dark:text-dark-input top-4 sm:top-[1.15rem] left-4" />
       <input
         type="text"
         placeholder="Search for a country..."
