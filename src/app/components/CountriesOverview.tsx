@@ -38,7 +38,7 @@ export default function CountriesOverview({ data }: countriesOverviewProps) {
         setRegionFilter={setRegionFilter}
       />
       {countriesToRender?.length ? (
-        <div className="my-6 sm:my-9 lg:my-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        <div className="my-6 sm:my-9 lg:my-12 flex flex-wrap justify-center gap-8 xl:gap-10 2xl:gap-[4.6rem]">
           {countriesToRender.map((country) => (
             <CountryCard
               key={country.name.official}
