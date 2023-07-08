@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as apiResponseTypes from "../libs/types/apiResponseTypes";
 import CountryCard from "./CountryCard";
 import Filters from "./Filters";
@@ -13,14 +13,18 @@ type countriesOverviewProps = {
 export default function CountriesOverview({ data }: countriesOverviewProps) {
   const [toTopVisible, setToTopVisible] = useState(false);
 
-  window.addEventListener("scroll", () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 200) {
-      setToTopVisible(true);
-      return;
-    }
-    setToTopVisible(false);
-  });
+  useEffect(
+    () =>
+      window.addEventListener("scroll", () => {
+        const scrolled = document.documentElement.scrollTop;
+        if (scrolled > 200) {
+          setToTopVisible(true);
+          return;
+        }
+        setToTopVisible(false);
+      }),
+    []
+  );
 
   const [regionFilter, setRegionFilter] = useState("");
   const countriesFilteredByRegion = data.filter((country) =>
