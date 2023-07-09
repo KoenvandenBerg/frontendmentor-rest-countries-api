@@ -18,7 +18,9 @@ export default function useThemePreference() {
     }
   };
 
-  const [theme, setTheme] = useState(getPreference());
+  const [theme, setTheme] = useState(
+    typeof window !== "undefined" ? getPreference() : possibleThemes.light
+  );
 
   const changeTheme = () => {
     if (theme === possibleThemes.light) {
