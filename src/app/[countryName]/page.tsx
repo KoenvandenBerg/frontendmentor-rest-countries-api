@@ -26,20 +26,17 @@ export default async function Country({ params }: countryProps) {
     return "-";
   }
 
-  function getCurrencies(country: Country): string | string[] {
-    if (country.currencies !== undefined) {
+  function getCurrencies(country: Country): string {
+    if (country.currencies) {
       const currencies: string[] = [];
 
-      for (let key in Object.keys(country.currencies)) {
-        currencies.unshift(key);
-      }
-      console.log(currencies);
-      return currencies;
+      Object.keys(country.currencies).forEach((key) => {
+        currencies.unshift(country.currencies[key].name);
+      });
+      return currencies.join(", ");
     }
     return "-";
   }
-
-  console.log(getCurrencies(country));
 
   async function getBorderingCountries(country: Country): Promise<string[]> {
     if (country?.borders !== undefined && country.borders[0] !== "-") {
@@ -99,7 +96,8 @@ export default async function Country({ params }: countryProps) {
                 {country.tld}
               </p>
               <p>
-                <span className="font-bold">Currencies:</span>
+                <span className="font-bold">Currencies:</span>{" "}
+                {getCurrencies(country)}
               </p>
             </div>
           </div>
