@@ -1,6 +1,12 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { MdClose, MdArrowDropDown } from "react-icons/md";
 import * as apiResponseTypes from "../libs/types/apiResponseTypes";
 
@@ -17,6 +23,23 @@ export default function RegionFilter(props: regionFilterProps) {
     setMenuOpen(!menuOpen);
   };
 
+  const menuRef = useRef<any>();
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (menuRef.current !== null && !menuRef.current.contains(e.target)) {
+        e.stopPropagation();
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  });
+
   const [selectedRegion, setSelectedRegion] = useState("");
 
   const selectRegion = (region: string) => {
@@ -27,7 +50,7 @@ export default function RegionFilter(props: regionFilterProps) {
   useEffect(() => props.setRegionFilter(selectedRegion), [selectedRegion]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <div className="relative h-12 sm:h-[3.5rem] w-full sm:w-[12.5rem] flex justify-between items-center bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-6 sm:px-6 text-xs sm:text-sm text-light-text dark:text-dark-input">
         <p>{selectedRegion !== "" ? selectedRegion : "Filter by Region"}</p>
         {selectedRegion !== "" ? (
