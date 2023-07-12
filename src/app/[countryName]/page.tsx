@@ -13,7 +13,7 @@ type countryProps = {
 
 export default async function Country({ params }: countryProps) {
   const data: Country[] = await getData(
-    `https://restcountries.com/v3.1/name/${params.countryName}`
+    `https://restcountries.com/v3.1/name/${params.countryName}?fullText=true`
   );
 
   const country = data[0];
@@ -56,20 +56,36 @@ export default async function Country({ params }: countryProps) {
     return ["-"];
   }
 
+  function getLanguages(country: Country): string {
+    if (country.languages !== undefined) {
+      const languages: string[] = [];
+
+      Object.keys(country.languages).forEach((key) => {
+        languages.unshift(country.languages![key]);
+      });
+      return languages.join(", ");
+    }
+    return "-";
+  }
+
   return (
     <>
       <BackButton />
-      <div className="w-full flex flex-col sm:flex-row my-6 sm:my-9 lg:my-12">
+      <div className="w-full flex flex-col md:flex-row md:justify-between my-6 sm:my-9 lg:my-12">
         <img
           src={country.flags.svg}
-          alt={`The flag of ${country.name.common}.`}
-          className="w-full sm:w-1/2 rounded-[0.3125rem] shadow-md shadow-box-shadow"
+          alt={
+            country.flags?.alt
+              ? country.flags.alt
+              : `The flag of ${country.name}`
+          }
+          className="w-full md:w-[50%] h-full md:h-[50%] rounded-[0.3125rem] shadow-md shadow-box-shadow"
         />
-        <div className="pl-12">
-          <h2 className="text-[2rem] font-extrabold">
+        <div className="w-full md:w-[45%] my-6 sm:my-9 md:my-0 flex flex-col gap-5">
+          <h2 className="text-[1.375rem] md:text-2xl lg:text-[2rem] font-extrabold">
             {country.name.official}
           </h2>
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col 2xl:flex-row justify-between gap-3 text-sm md:text-base">
             <div>
               <p>
                 <span className="font-bold">Native name:</span>{" "}
@@ -84,30 +100,37 @@ export default async function Country({ params }: countryProps) {
               </p>
               <p>
                 <span className="font-bold">Sub Region:</span>{" "}
-                {country.subregion}
+                {country.subregion ? country.subregion : " -"}
               </p>
               <p>
-                <span className="font-bold">Capital:</span> {country.capital}
+                <span className="font-bold">Capital:</span>{" "}
+                {country.capital ? country.capital : " -"}
               </p>
             </div>
             <div>
               <p>
                 <span className="font-bold">Top Level Domain:</span>{" "}
-                {country.tld}
+                {country.tld ? country.tld?.join(", ") : " -"}
               </p>
               <p>
                 <span className="font-bold">Currencies:</span>{" "}
                 {getCurrencies(country)}
               </p>
+              <p>
+                <span className="font-bold">Languages:</span>{" "}
+                {getLanguages(country)}
+              </p>
             </div>
           </div>
-          <div className="mt-10 flex">
+          <div className="flex flex-col 2xl:flex-row gap-2 mt-2 text-sm md:text-base">
             <p className="font-bold flex-shrink-0">Border Countries:</p>{" "}
             <div className="flex flex-wrap gap-4">
               {(await getBorderingCountries(country)).map((name) => {
-                return (
+                return name === "-" ? (
+                  <span>&nbsp;-</span>
+                ) : (
                   <Link key={name} href={`/${name}`}>
-                    <button className="w-[10rem] h-10 px-[1.6rem] py-[0.3rem] flex justify-center items-center bg-light-elements dark:bg-dark-elements rounded-[0.3125rem] shadow-md shadow-box-shadow hover:scale-105 transition-transform">
+                    <button className="w-[8rem] md:w-[8.45rem] h-9 md:h-10 px-[1.6rem] py-[0.3rem] flex justify-center items-center bg-light-elements dark:bg-dark-elements rounded-[0.3125rem] shadow-md shadow-box-shadow hover:scale-105 transition-transform">
                       <p className="truncate">{name}</p>
                     </button>
                   </Link>
