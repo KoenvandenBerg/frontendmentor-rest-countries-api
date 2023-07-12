@@ -86,7 +86,7 @@ export default async function Country({ params }: countryProps) {
             {country.name.official}
           </h2>
           <div className="flex flex-col 2xl:flex-row justify-between gap-3 text-sm md:text-base">
-            <div>
+            <div className="flex flex-col gap-[0.15rem] md:gap-[0.35rem]">
               <p>
                 <span className="font-bold">Native name:</span>{" "}
                 {getNativeName(country)}
@@ -107,7 +107,7 @@ export default async function Country({ params }: countryProps) {
                 {country.capital ? country.capital : " -"}
               </p>
             </div>
-            <div>
+            <div className="flex flex-col gap-[0.15rem] md:gap-[0.35rem]">
               <p>
                 <span className="font-bold">Top Level Domain:</span>{" "}
                 {country.tld ? country.tld?.join(", ") : " -"}
