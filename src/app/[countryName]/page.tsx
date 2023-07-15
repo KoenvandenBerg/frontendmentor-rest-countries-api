@@ -4,6 +4,29 @@ import getData from "../libs/getData";
 import { Country } from "../libs/types/apiResponseTypes";
 import Link from "next/link";
 import BackButton from "../components/BackButton";
+import { Metadata } from "next";
+
+async function getCountryData(countryName: string): Promise<Country> {
+  const data: Country[] = await getData(
+    `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+  );
+
+  return data[0];
+}
+
+export async function generateMetadata({
+  params,
+}: countryProps): Promise<Metadata> {
+  const country: Country = await getCountryData(params.countryName);
+
+  return {
+    title: `${country.name.common} | REST Countries API`,
+    description: `A page containing some facts about ${country.name.common}.`,
+    icons: {
+      icon: country.flags.svg,
+    },
+  };
+}
 
 type countryProps = {
   params: {
@@ -12,11 +35,7 @@ type countryProps = {
 };
 
 export default async function Country({ params }: countryProps) {
-  const data: Country[] = await getData(
-    `https://restcountries.com/v3.1/name/${params.countryName}?fullText=true`
-  );
-
-  const country = data[0];
+  const country: Country = await getCountryData(params.countryName);
 
   function getNativeName(country: Country): string {
     if (country.name?.nativeName) {
@@ -83,7 +102,7 @@ export default async function Country({ params }: countryProps) {
         />
         <div className="w-full md:w-[45%] my-6 sm:my-9 md:my-0 flex flex-col gap-5">
           <h2 className="text-[1.375rem] md:text-2xl lg:text-[2rem] font-extrabold">
-            {country.name.official}
+            {country.name.official} ({country.name.common})
           </h2>
           <div className="flex flex-col 2xl:flex-row justify-between gap-3 text-sm md:text-base">
             <div className="flex flex-col gap-[0.15rem] md:gap-[0.35rem]">
