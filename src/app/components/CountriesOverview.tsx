@@ -82,6 +82,7 @@ export default function CountriesOverview({ data }: countriesOverviewProps) {
       {toTopVisible && (
         <button
           onClick={() => window.scrollTo({ top: 0 })}
+          aria-label="Scroll to top"
           className="fixed bottom-10 right-10 w-12 h-12 bg-light-elements dark:bg-dark-elements flex justify-center items-center rounded-[0.3125rem] shadow-md shadow-box-shadow hover:scale-105 transition-transform"
         >
           <MdArrowUpward className="w-8 h-8" />

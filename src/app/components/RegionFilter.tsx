@@ -65,10 +65,11 @@ export default function RegionFilter(props: regionFilterProps) {
         {selectedRegion !== "" ? (
           <MdClose
             onClick={() => setSelectedRegion("")}
+            aria-label="Clear selected region"
             className="absolute h-4 sm:h-5 w-4 sm:w-5 text-light-input dark:text-dark-input right-4 top-4 sm:top-[1.15rem] hover:text-red-700 dark:hover:text-red-700 hover:scale-150 cursor-pointer transition-transform"
           />
         ) : (
-          <button onClick={toggleMenu}>
+          <button onClick={toggleMenu} aria-label={menuOpen ? "Close menu" : "Open menu"}>
             <MdArrowDropDown
               className={`h-6 w-6 mr-[-0.3rem] ${
                 menuOpen && "rotate-180"

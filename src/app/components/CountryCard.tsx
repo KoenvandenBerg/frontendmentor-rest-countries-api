@@ -12,7 +12,7 @@ type countryCardProps = PropsWithChildren<{
 
 export default function CountryCard(props: countryCardProps) {
   return (
-    <Link href={`/${props.name}`}>
+    <Link href={`/${props.name}`} aria-label={`${props.name}`}>
       <div className="w-[16.5rem] h-[21rem] bg-light-elements dark:bg-dark-elements rounded-[0.3125rem]  shadow-md shadow-box-shadow hover:scale-105 transition-transform">
         <img
           src={props.flag}

@@ -148,7 +148,7 @@ export default async function Country({ params }: countryProps) {
                 return name === "-" ? (
                   <span>&nbsp;-</span>
                 ) : (
-                  <Link key={name} href={`/${name}`}>
+                  <Link key={name} href={`/${name}`} aria-label={`${name}`}>
                     <button className="w-[8rem] md:w-[8.45rem] h-9 md:h-10 px-[1.6rem] py-[0.3rem] flex justify-center items-center bg-light-elements dark:bg-dark-elements rounded-[0.3125rem] shadow-md shadow-box-shadow hover:scale-105 transition-transform">
                       <p className="truncate">{name}</p>
                     </button>

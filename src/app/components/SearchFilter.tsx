@@ -52,6 +52,7 @@ export default function SearchFilter(props: searchFilterProps) {
       {filterText !== "" && (
         <MdClose
           onClick={() => setFilterText("")}
+          aria-label="Clear search"
           className="absolute h-4 sm:h-5 w-4 sm:w-5 text-light-input dark:text-dark-input right-4 top-4 sm:top-[1.15rem] hover:text-red-700 dark:hover:text-red-700 hover:scale-150 cursor-pointer transition-transform"
         />
       )}
