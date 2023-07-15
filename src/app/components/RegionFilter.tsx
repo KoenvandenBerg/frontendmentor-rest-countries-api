@@ -35,8 +35,17 @@ export default function RegionFilter(props: regionFilterProps) {
 
     document.addEventListener("mousedown", handleClick);
 
+    const handleEscPress = (e: KeyboardEvent) => {
+      if (menuOpen && e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscPress);
+
     return () => {
       document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleEscPress);
     };
   });
 
