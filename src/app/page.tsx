@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Home() {
+export default async function Overview() {
   const data: apiResponseTypes.Country[] = await getData(
     "https://restcountries.com/v3.1/all"
   );

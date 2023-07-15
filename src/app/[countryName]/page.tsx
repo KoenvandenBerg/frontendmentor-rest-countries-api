@@ -104,7 +104,7 @@ export default async function Country({ params }: countryProps) {
           <h2 className="text-[1.375rem] md:text-2xl lg:text-[2rem] font-extrabold">
             {country.name.official} ({country.name.common})
           </h2>
-          <div className="flex flex-col 2xl:flex-row justify-between gap-3 text-sm md:text-base">
+          <div className="flex flex-col 2xl:flex-row justify-between gap-4 sm:gap-6 md:gap-8 my-0 sm:my-2 md:my-4 text-sm md:text-base">
             <div className="flex flex-col gap-[0.15rem] md:gap-[0.35rem]">
               <p>
                 <span className="font-bold">Native name:</span>{" "}
