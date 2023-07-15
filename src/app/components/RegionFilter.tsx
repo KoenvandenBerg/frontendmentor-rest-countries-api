@@ -77,6 +77,7 @@ export default function RegionFilter(props: regionFilterProps) {
                   className="cursor-pointer hover:underline underline-offset-4"
                   key={region}
                   onClick={() => selectRegion(region)}
+                  tabIndex={0}
                 >
                   {region}
                 </li>
