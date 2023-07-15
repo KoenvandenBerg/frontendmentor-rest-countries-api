@@ -1,6 +1,12 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { MdClose, MdSearch } from "react-icons/md";
 
 type searchFilterProps = {
@@ -16,6 +22,22 @@ export default function SearchFilter(props: searchFilterProps) {
 
   useEffect(() => props.setSearchFilter(filterText), [filterText]);
 
+  const searchBox = useRef<any>();
+
+  useEffect(() => {
+    const handleEscPress = (e: KeyboardEvent) => {
+      if (searchBox.current === document.activeElement && e.key === "Escape") {
+        setFilterText("");
+      }
+    };
+
+    document.addEventListener("keydown", handleEscPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscPress);
+    };
+  });
+
   return (
     <div className="relative">
       <MdSearch className="absolute h-4 sm:h-5 w-4 sm:w-5 text-light-text dark:text-dark-input top-4 sm:top-[1.15rem] left-4" />
@@ -24,6 +46,7 @@ export default function SearchFilter(props: searchFilterProps) {
         placeholder="Search for a country..."
         value={filterText}
         onChange={(e) => handleChange(e.target.value)}
+        ref={searchBox}
         className="h-12 sm:h-[3.5rem] w-full sm:w-[20.5rem] lg:w-[30rem] bg-light-elements dark:bg-dark-elements shadow-md shadow-box-shadow rounded-[0.3125rem] px-11 sm:px-[3.2rem] text-xs sm:text-sm text-light-input dark:text-dark-input placeholder:dark:text-dark-input"
       />
       {filterText !== "" && (
